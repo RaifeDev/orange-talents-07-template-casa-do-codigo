@@ -25,7 +25,6 @@ public class CategoriaController {
     @PostMapping
     @Transactional
     public ResponseEntity<CategoriaRespostaDto> salvarCategoria(@RequestBody @Valid CategoriaFormularioDto formulario){
-        System.out.println(formulario.getNome());
         Categoria categoria = formulario.converterParaCategoria();
         entityManager.persist(categoria);
         return ResponseEntity.ok().body(new CategoriaRespostaDto(categoria));

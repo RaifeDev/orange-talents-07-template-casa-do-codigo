@@ -28,7 +28,6 @@ public class NonDuplicateValueValidator implements ConstraintValidator<NonDuplic
     @Override
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
 
-
         Query query = entityManager.createQuery("select 1 from "+classeEmUso.getName()+" where " + atributoDaClasse + "=:value");
         query.setParameter("value", o);
 
