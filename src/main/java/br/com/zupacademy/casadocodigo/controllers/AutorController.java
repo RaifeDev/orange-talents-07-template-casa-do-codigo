@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("autores")
+@RequestMapping("api/autores")
 public class AutorController {
 
 
@@ -26,7 +26,7 @@ public class AutorController {
     @PostMapping
     @Transactional
     public ResponseEntity<AutorRespostaDto> salvarAutor(@RequestBody @Valid AutorFormularioDto formAutor){
-        Autor autor = formAutor.converterParaFormularioDto();
+        Autor autor = formAutor.converterParaAutor();
         entityManager.persist(autor);
         return ResponseEntity.ok().body(new AutorRespostaDto(autor));
     }

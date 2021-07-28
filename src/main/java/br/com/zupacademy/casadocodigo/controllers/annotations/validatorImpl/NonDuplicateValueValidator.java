@@ -1,7 +1,6 @@
 package br.com.zupacademy.casadocodigo.controllers.annotations.validatorImpl;
 
 import br.com.zupacademy.casadocodigo.controllers.annotations.NonDuplicateValue;
-import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

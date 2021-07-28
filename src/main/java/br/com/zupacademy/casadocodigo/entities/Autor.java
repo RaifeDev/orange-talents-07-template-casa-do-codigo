@@ -23,6 +23,7 @@ public class Autor {
     private String descricao;
     private LocalDateTime dataCadastro;
 
+    @Deprecated
     public Autor(){
 
     }

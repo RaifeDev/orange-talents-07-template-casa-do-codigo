@@ -32,7 +32,7 @@ public class AutorFormularioDto {
         return descricao;
     }
 
-    public Autor converterParaFormularioDto(){
+    public Autor converterParaAutor(){
         return new Autor(nome, email, descricao);
     }
 
