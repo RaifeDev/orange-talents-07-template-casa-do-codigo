@@ -8,13 +8,12 @@ import br.com.zupacademy.casadocodigo.repositories.CategoriaRepository;
 import br.com.zupacademy.casadocodigo.repositories.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/livros")
@@ -35,6 +34,13 @@ public class LivroController {
         Livro livro = formulario.converterParaLivro(categoriaRepository, autorRepository);
         livroRepository.save(livro);
         return ResponseEntity.ok().body(new LivroRespostaDto(livro));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<LivroRespostaDto>> listarLivros(){
+        List<Livro> livros = livroRepository.findAll();
+        List<LivroRespostaDto> livrosDto = livros.stream().map(LivroRespostaDto::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(livrosDto);
     }
 
 
