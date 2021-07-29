@@ -2,9 +2,6 @@ package br.com.zupacademy.casadocodigo.entities.respostasDto;
 
 import br.com.zupacademy.casadocodigo.entities.Livro;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class LivroRespostaDto {
 
     private Long id;

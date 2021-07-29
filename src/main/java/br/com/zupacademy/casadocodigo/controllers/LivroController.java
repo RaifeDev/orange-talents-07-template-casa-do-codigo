@@ -1,7 +1,9 @@
 package br.com.zupacademy.casadocodigo.controllers;
 
+import br.com.zupacademy.casadocodigo.controllers.exceptions.IdNaoEncontrado;
 import br.com.zupacademy.casadocodigo.entities.Livro;
 import br.com.zupacademy.casadocodigo.entities.formulariosDto.LivroFormularioDto;
+import br.com.zupacademy.casadocodigo.entities.respostasDto.LivroByIdResponse;
 import br.com.zupacademy.casadocodigo.entities.respostasDto.LivroRespostaDto;
 import br.com.zupacademy.casadocodigo.repositories.AutorRepository;
 import br.com.zupacademy.casadocodigo.repositories.CategoriaRepository;
@@ -11,8 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -43,6 +45,19 @@ public class LivroController {
         return ResponseEntity.ok().body(livrosDto);
     }
 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<LivroByIdResponse> listarLivroPorId(@PathVariable Long id){
+
+        Optional<Livro> livro = livroRepository.findById(id);
+
+        if(livro.isPresent()){
+            LivroByIdResponse livroByIdResponse = new LivroByIdResponse(livro.get());
+            return ResponseEntity.ok().body(livroByIdResponse);
+        }
+
+        throw new IdNaoEncontrado(id);
+    }
 
 
 

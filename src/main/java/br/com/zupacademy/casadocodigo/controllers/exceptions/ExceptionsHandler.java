@@ -1,18 +1,19 @@
 package br.com.zupacademy.casadocodigo.controllers.exceptions;
 
+import br.com.zupacademy.casadocodigo.entities.respostasDto.ExceptionGenericaResponse;
 import br.com.zupacademy.casadocodigo.entities.respostasDto.ValidationErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestControllerAdvice
+@ControllerAdvice
 public class ExceptionsHandler {
 
 
@@ -31,6 +32,13 @@ public class ExceptionsHandler {
 
     }
 
+    @ExceptionHandler(IdNaoEncontrado.class)
+    public ResponseEntity<ExceptionGenericaResponse> elementoNaoEncontrado(IdNaoEncontrado exception){
+        ExceptionGenericaResponse exceptionGenericaResponse = new ExceptionGenericaResponse(HttpStatus.NOT_FOUND.value(),
+                exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionGenericaResponse);
+    }
 
 
 
