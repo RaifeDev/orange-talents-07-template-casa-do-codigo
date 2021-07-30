@@ -21,6 +21,7 @@ public class Livro {
     @Size(max = 500)
     private String resumo;
     @NotBlank
+    @Lob
     private String sumario;
     @NotNull
     @Min(value = 20)
