@@ -57,6 +57,7 @@ public class LivroController {
         }
 
         throw new IdNaoEncontrado(id);
+        //return ResponseEntity.status(404).body(dto);
     }
 
 

@@ -56,8 +56,8 @@ public class LivroFormularioDto {
     }
 
     public Livro converterParaLivro(CategoriaRepository categoriaRepository, AutorRepository autorRepository){
-        @NotNull Categoria categoria = categoriaRepository.findById(idCategoria).get();
-        @NotNull Autor autor = autorRepository.findById(idAutor).get();
+         Categoria categoria = categoriaRepository.findById(idCategoria).get();
+         Autor autor = autorRepository.findById(idAutor).get();
         return new Livro(titulo, resumo, sumario, preco, numeroDePaginas, isbn, this.dataLancamento, categoria, autor);
     }
 

@@ -12,15 +12,19 @@ public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank
     private String nome;
+
     @NotBlank
     @Email
     @Column(unique = true)
     private String email;
+
     @NotBlank
     @Size(max = 400)
     private String descricao;
+
     private LocalDateTime dataCadastro;
 
     @Deprecated
